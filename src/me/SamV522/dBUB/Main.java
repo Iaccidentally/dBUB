@@ -12,6 +12,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -50,10 +51,18 @@ public class Main extends JavaPlugin {
                 sender.sendMessage("/dbubreload - Reloads dBUB");
                 sender.sendMessage("/dbubversion - Shows the version of dBUB currently running");
                 sender.sendMessage("/dbubhelp - Shows this menu");
+                sender.sendMessage("/dbubsync - Manually synchronize groups from the database");
                 retBool = true;
             }
-
-        } //If this has happened the function will break and return true. if this hasn't happened the a value of false will be returned.
+        }else if(cmd.getName().equalsIgnoreCase("dbubsync"))
+        {
+            Player[] onlinePlayers = getServer().getOnlinePlayers();
+            for(int i=0;i!=onlinePlayers.length;i++)
+            {
+                GroupMapping.updateMinecraftUser(onlinePlayers[i]);
+            }
+            retBool = true;
+        }
         return retBool;
     }
 

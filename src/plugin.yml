@@ -34,3 +34,8 @@ commands:
         usage: '/dBUBhelp'
         permission: dbub.help
         permisison-message: "You don't have <permission>"
+    dbubsync:
+        description: 'Synchronizes the groups from the database manually'
+        usage: '/dBUBsync'
+        permission: dbub.sync
+        permission-message: "You don't have <permission>"
